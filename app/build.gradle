@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+    defaultConfig {
+        applicationId "com.example.axrorxoja.myapplication"
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+kapt {
+    generateStubs = true
+}
+dependencies {
+    def dagger = "2.11"
+    def support = "25.4.0"
+    def rxBinding = "2.0.0"
+    def gson = "2.8.0"
+    def retrofit = "2.3.0"
+    def chuck = "1.0.4"
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "com.android.support:appcompat-v7:" + support
+    implementation "com.android.support.constraint:constraint-layout:1.0.2"
+    implementation "com.android.support:design:" + support
+    implementation "com.android.support:support-v4:" + support
+
+    compile "com.jakewharton.rxbinding2:rxbinding:" + rxBinding
+    compile "com.jakewharton.rxbinding2:rxbinding-support-v4:" + rxBinding
+    compile "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:" + rxBinding
+    compile "com.jakewharton.rxbinding2:rxbinding-design:" + rxBinding
+    compile "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:" + rxBinding
+
+    compile "com.google.code.gson:gson:" + gson
+    compile "com.squareup.retrofit2:retrofit:" + retrofit
+    compile "com.squareup.retrofit2:converter-gson:" + retrofit
+    compile "com.squareup.retrofit2:adapter-rxjava2:" + retrofit
+
+
+    compile "io.reactivex.rxjava2:rxkotlin:2.0.3"
+    compile "io.reactivex.rxjava2:rxandroid:2.0.1"
+
+    compile "com.google.dagger:dagger:" + dagger
+    compile "com.google.dagger:dagger-android:" + dagger
+    compile "com.google.dagger:dagger-android-support:" + dagger
+    kapt "com.google.dagger:dagger-compiler:" + dagger
+    kapt "com.google.dagger:dagger-android-processor:" + dagger
+
+    debugCompile "com.readystatesoftware.chuck:library:" + chuck
+    releaseCompile "com.readystatesoftware.chuck:library-no-op:" + chuck
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+}
+
